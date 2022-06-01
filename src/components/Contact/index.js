@@ -11,7 +11,7 @@ function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!errorMessage) {
-      setFormState({ [e.target.name]: e.target.value });
+      setFormState({...formState, [e.target.name]: e.target.value });
       console.log('Form', formState);
     }
   };
@@ -36,7 +36,7 @@ function ContactForm() {
   return (
     <section>
       <h1 data-testid="h1tag">Contact me</h1>
-      <form id="contact-form" onSubmit={handleSubmit}>
+      <form id="contact-form">
         <div>
           <label htmlFor="name">Name:</label>
           <input type="text" name="name" defaultValue={name} onBlur={handleChange} />
@@ -54,7 +54,7 @@ function ContactForm() {
             <p className="error-text">{errorMessage}</p>
           </div>
         )}
-        <button data-testid="button" type="submit">Submit</button>
+        <button data-testid="button" type="submit" onSubmit={handleSubmit}>Submit</button>
       </form>
     </section>
   );
